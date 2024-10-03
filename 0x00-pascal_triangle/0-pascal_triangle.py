@@ -9,11 +9,18 @@ def pascal_triangle(n):
     if n <= 0:
         return []
     if type(n) is int:
-        triangle = []
+        trangle = []
         for i in range(n):
             if i == 0:
-                triangle.append([1])
+                trangle.append([1])
+            elif i == 1:
+                trangle.append([1, 1])
             else:
-                row = [1] + [triangle[i-1][j-1] + triangle[i-1][j] for j in range(1, i)] + [1]
-                triangle.append(row)
-        return triangle
+                row = []
+                for j in range(i + 1):
+                    if j == 0 or j == i:
+                        row.append(1)
+                    else:
+                        row.append(trangle[i - 1][j - 1] + trangle[i - 1][j])
+                trangle.append(row)
+    return trangle
